@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
@@ -35,7 +35,7 @@ app.use(
     secret: "secret0037",
     resave: false,
     saveUninitialized: false,
-    store: mongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017" }),
+    store: mongoStore.create({ mongoUrl: dbUrl }),
   })
 );
 
