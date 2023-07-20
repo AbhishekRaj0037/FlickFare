@@ -1,0 +1,80 @@
+<% layout('layouts/boilerplate')%>
+<div class="container">
+  <div class="row">
+    <a
+      href="https://getbootstrap.com/docs/4.0/components/alerts/"
+      target="_blank"
+    >
+    </a>
+    <% for(let error of errors){%>
+    <div class="col-md-12">
+      <div class="alert alert-danger" role="alert">
+        
+        </button>
+        <strong> <center><%=error%></center> </strong>
+      </div>
+    </div>
+    <%}%>
+  </div>
+</div>
+<div>
+  <div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+        <div class="card shadow">
+          <img
+            src="https://res.cloudinary.com/dagjmj2ww/image/upload/v1686857124/samples/Screenshot_2023-06-16_004225_trmksc.jpg"
+            alt=""
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Login</h5>
+            <form
+              action="/login"
+              method="POST"
+              class="validated-form"
+              novalidate
+            >
+              <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="username"
+                  name="username"
+                  autofocus
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+              <button class="btn btn-success btn-block">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+  crossorigin="anonymous"
+></script>

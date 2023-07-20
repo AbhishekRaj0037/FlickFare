@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate')%>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+$(function(){
+  $("input[type='checkBox']").change(function(){
+    var len = $("input[type='checkBox']:checked").length;
+    if(len == 0)
+      $("input[type='submit']").prop("disabled", true);
+    else
+      $("input[type='submit']").removeAttr("disabled");
+  });
+  $("input[type='checkBox']").trigger('change');
+});
+ 
+</script>
+
+<style>
+  .screen {
+  width: 100%;
+  height: 70px;
+  background-color: #280a81;
+  margin: 20px 0;
+  box-shadow: 0 3px 12px rgb(148, 147, 147);
+  transform: rotateX(-45deg);
+}
+.container {
+  perspective: 350px;
+  margin-bottom: 15px;
+}
+.ref::before {
+  font-weight: bold;
+  color: rgb(128, 0, 0);
+  content: "Screen ";
+}
+</style>
+  
+<form
+  action="/show/<%=id%>/seats/<%=year%>-<%=month%>-<%=day%>"
+  method="POST"
+  class="mb-3 validated-form"
+  novalidate
+>
+  <div class="plane">
+    <div class="cockpit">
+      
+      <center>
+      <h1>Please select seats</h1>
+      <div class="container">
+        <div class="screen"><br><span class="ref"></span></div>
+      </center>
+    </div>
+    <div class="exit exit--front fuselage"></div>
+    <ol class="cabin fuselage">
+
+      <li class="row row--1">
+        <ol class="seats" type="A">
+
+      <% for (currentSeat of seat){ %>
+        <li class="seat">
+          <input class="cbox" type="checkbox" id=<%=currentSeat.seatNo %>  name=<%=currentSeat.seatNo %> <% if(currentSeat.occupied==true && (currentSeat.user==null || currentSeat.user._id.toString()!=currentUser._id.toString())){%> onclick="return false" disabled<%}%>     />
+          <label for=<%=currentSeat.seatNo %>><%=currentSeat.seatNo %></label>
+        </li>
+        <% if(currentSeat.seatNo[1]=='F'){ %>
+           </ol> </li>
+          <li class="row row--<%=currentSeat.seatNo[0] %>">
+            <ol class="seats" type="A">
+          <%}%>
+      <% } %>
+      
+    </ol>
+    <div class="exit exit--back fuselage"></div>
+  </div>
+  <center>
+    <input id=""bt_submit" type="submit"  value="Book Now" class="btn btn-sm btn-danger"></input>
+  </center>
+</form>

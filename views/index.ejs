@@ -1,0 +1,168 @@
+<% layout('layouts/boilerplate')%>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+
+    min-height: 100vh;
+  }
+  .slider {
+    width: 100%;
+  }
+  .slider input {
+    display: none;
+  }
+  .testimonials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 350px;
+    perspective: 1000px;
+    overflow: hidden;
+  }
+  .testimonials .item {
+    width: 300px;
+    height: 350px;
+    border-radius: 5%;
+    background-color: #0a0220;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.4s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    cursor: pointer;
+  }
+  .testimonials .item img {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 5%;
+  }
+  .testimonials .item p {
+    color: #ddd;
+  }
+  .testimonials .item h2 {
+    font-size: 14px;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dots label {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #0d4f96;
+    margin: 7px;
+    transition-duration: 0.2s;
+  }
+
+  #t-1:checked ~ .dots label[for="t-1"],
+  #t-2:checked ~ .dots label[for="t-2"],
+  #t-3:checked ~ .dots label[for="t-3"],
+  #t-4:checked ~ .dots label[for="t-4"],
+  #t-5:checked ~ .dots label[for="t-5"] {
+    transform: scale(2);
+    background-color: #fff;
+  }
+  #t-1:checked ~ .dots label[for="t-2"],
+  #t-2:checked ~ .dots label[for="t-1"],
+  #t-2:checked ~ .dots label[for="t-3"],
+  #t-3:checked ~ .dots label[for="t-2"],
+  #t-3:checked ~ .dots label[for="t-4"],
+  #t-4:checked ~ .dots label[for="t-3"],
+  #t-4:checked ~ .dots label[for="t-5"],
+  #t-5:checked ~ .dots label[for="t-4"] {
+    transform: scale(1.5);
+  }
+  #t-1:checked ~ .testimonials label[for="t-3"],
+  #t-2:checked ~ .testimonials label[for="t-4"],
+  #t-3:checked ~ .testimonials label[for="t-5"],
+  #t-4:checked ~ .testimonials label[for="t-1"],
+  #t-5:checked ~ .testimonials label[for="t-2"] {
+    transform: translate3d(600px, 0, -180px) rotateY(-25deg);
+    z-index: 2;
+  }
+  #t-1:checked ~ .testimonials label[for="t-2"],
+  #t-2:checked ~ .testimonials label[for="t-3"],
+  #t-3:checked ~ .testimonials label[for="t-4"],
+  #t-4:checked ~ .testimonials label[for="t-5"],
+  #t-5:checked ~ .testimonials label[for="t-1"] {
+    transform: translate3d(300px, 0, -90px) rotateY(-15deg);
+    z-index: 3;
+  }
+  #t-2:checked ~ .testimonials label[for="t-1"],
+  #t-3:checked ~ .testimonials label[for="t-2"],
+  #t-4:checked ~ .testimonials label[for="t-3"],
+  #t-5:checked ~ .testimonials label[for="t-4"],
+  #t-1:checked ~ .testimonials label[for="t-5"] {
+    transform: translate3d(-300px, 0, -90px) rotateY(15deg);
+    z-index: 3;
+  }
+  #t-3:checked ~ .testimonials label[for="t-1"],
+  #t-4:checked ~ .testimonials label[for="t-2"],
+  #t-5:checked ~ .testimonials label[for="t-3"],
+  #t-2:checked ~ .testimonials label[for="t-5"],
+  #t-1:checked ~ .testimonials label[for="t-4"] {
+    transform: translate3d(-600px, 0, -180px) rotateY(25deg);
+  }
+  #t-1:checked ~ .testimonials label[for="t-1"],
+  #t-2:checked ~ .testimonials label[for="t-2"],
+  #t-3:checked ~ .testimonials label[for="t-3"],
+  #t-4:checked ~ .testimonials label[for="t-4"],
+  #t-5:checked ~ .testimonials label[for="t-4"],
+  #t-5:checked ~ .testimonials label[for="t-5"] {
+    z-index: 4;
+  }
+  img {
+    border-radius: 1%;
+  }
+</style>
+<h1><center>Now Available</center></h1>
+<br />
+<% let mx=shows.length%> <% mx=Math.min(mx,5) %>
+<div class="slider">
+  <% for(let i=1;i<=mx;i++){%>
+  <input type="radio" name="testimonial" id="t-<%=i%>" checked />
+
+  <%}%>
+
+  <div class="testimonials">
+    <% for(let i=1;i<=mx;i++) {%>
+    <label class="item" for="t-<%=i%>">
+      <img src="<%=shows[i-1].image%>" />
+    </label>
+    <%}%>
+  </div>
+  <div class="dots">
+    <% for(let i=1;i<=mx;i++){%>
+    <label for="t-<%=i%>"></label>
+    <%}%>
+  </div>
+</div>
+<br />
+<br />
+<h1><center>All Shows</center></h1>
+<% for (let show of shows){%>
+<div class="card mb-3">
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-fluid" alt="" src="<%= show.image%>" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= shows.title %></h5>
+        <p class="card-text"><%= shows.description %></p>
+        <a class="btn btn-primary" href="/show/<%=show._id%>"
+          >View <%=show.title%>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<% }%>

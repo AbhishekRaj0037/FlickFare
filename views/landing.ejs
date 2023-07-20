@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlickFare</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        height: 100vh;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://res.cloudinary.com/dagjmj2ww/image/upload/v1689585668/csm_Kino_7097014392_qmtfwk.jpg");
+        background-size: cover;
+        background-position: center;
+        text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+      }
+
+      .cover-container {
+        max-width: 60vw;
+      }
+
+      .nav-link {
+        padding: 0.25rem 0;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        margin-left: 1rem;
+        border-bottom: 0.25rem solid transparent;
+      }
+
+      .nav-link:hover {
+        color: rgba(255, 255, 255, 0.5);
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .nav-link.active {
+        color: white;
+        border-bottom-color: white;
+      }
+
+      .btn-secondary,
+      .btn-secondary:hover {
+        color: #333;
+        text-shadow: none;
+      }
+    </style>
+  </head>
+
+  <body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto"></header>
+      <main class="px-3">
+        <h1>FlickFare</h1>
+        <p class="lead">
+          Welcome to FlickFare! <br />
+          Where movie magic meets convenience. Book your tickets now and
+          experience the silver screen like never before!
+        </p>
+        <a
+          href="/home"
+          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white"
+          >Book Now</a
+        >
+      </main>
+
+      <footer class="mt-auto text-white-50">
+        <p>&copy; 2023</p>
+      </footer>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
