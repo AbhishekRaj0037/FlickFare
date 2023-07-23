@@ -23,7 +23,10 @@ module.exports.register = async (req, res, next) => {
     return res.redirect("/register");
   }
   const alreadyUser = await User.findOne({ username: req.body.username });
-  if (alreadyUser) return res.send("User already exsists!!!");
+  if (alreadyUser) {
+    req.flash("error", "Username already exsists!!!");
+    return res.redirect("/register");
+  }
   const user = new User({
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, await bcrypt.genSalt(12)),
